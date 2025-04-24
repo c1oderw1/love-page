@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专属问答</title>
+    <style>
+        body {
+            background: #ffe6f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: '微软雅黑';
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff69b4;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: block;
+            width: 200px;
+            padding: 15px;
+            margin: 10px auto;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        #super {
+            background: #ff69b4;
+            color: white;
+        }
+        #normal, #no {
+            background: #ffb3d9;
+            color: white;
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+        .heart {
+            font-size: 50px;
+            color: #ff69b4;
+            animation: beat 1s infinite;
+        }
+        @keyframes beat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1>亲爱哒～你喜欢万万吗？</h1>
+        <button class="btn" id="super">超级喜欢</button>
+        <button class="btn" id="normal">喜欢</button>
+        <button class="btn" id="no">不喜欢</button>
+    </div>
+
+    <script>
+        // 阻止页面滑动
+        document.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+
+        // 超级喜欢按钮
+        document.getElementById('super').addEventListener('click', function() {
+            alert("(≧∇≦)ﾉ 我就知道！我也超级喜欢你！");
+            window.close(); // 在移动端可能无效，改为显示提示
+        });
+
+        // 其他选项处理
+        function showWarning() {
+            alert("⚠ 请认真选择哦～再给你一次机会！");
+        }
+
+        document.getElementById('normal').addEventListener('click', function() {
+            this.style.transform = 'rotate(-5deg)';
+            setTimeout(() => {
+                this.style.transform = 'rotate(5deg)';
+                setTimeout(() => {
+                    this.style.transform = 'rotate(0deg)';
+                }, 200);
+            }, 200);
+            showWarning();
+        });
+
+        document.getElementById('no').addEventListener('click', function() {
+            this.style.background = '#ff69b4';
+            this.style.color = 'white';
+            this.innerHTML = "超级喜欢";
+            this.id = 'super';
+            showWarning();
+        });
+    </script>
+</body>
+</html>
